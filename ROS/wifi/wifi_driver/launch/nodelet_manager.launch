@@ -1,0 +1,15 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <!-- start nodelet manager -->
+  <node pkg="nodelet" type="nodelet" name="wifi_nodelet_manager"
+        args="manager" />
+  <!-- Wifi interface name -->
+  <arg name="port" default="wlan0" />
+  <!-- Start driver nodelet -->
+  <node pkg="nodelet" type="nodelet" name="wifi_driver_nodelet"
+        args="load wifi_driver/WifiDriverNodelet wifi_nodelet_manager" >
+    <param name="port" value="$(arg port)"/>
+  </node>    
+
+</launch>

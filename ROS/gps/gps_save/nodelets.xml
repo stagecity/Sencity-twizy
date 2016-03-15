@@ -1,0 +1,9 @@
+<library path="lib/libgps_save_nodelet">
+  <class name="gps_save/GpsSaveNodelet"
+         type="gps_save::GpsSaveNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Save data from gps in binary file.
+    </description>
+  </class>
+</library>

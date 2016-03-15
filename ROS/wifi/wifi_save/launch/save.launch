@@ -1,0 +1,24 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Directory where to store data -->
+  <arg name="outputDir" default="~/capture/"/>
+  <!-- Maximum size of stored files -->
+  <arg name="maxSize" default="102400" />
+  <!-- WiFi interface name -->
+  <arg name="port" default="wlan0" />
+  <!-- TF id -->
+  <arg name="frame_id" default="wifi" />
+  <!-- Start wifi driver nodelet -->
+  <include file="$(find wifi_driver)/launch/nodelet_manager.launch">
+    <arg name="port" value="$(arg port)"/>
+  </include>
+  
+  <!-- Start wifi save nodelet -->
+  <node pkg="nodelet" type="nodelet" name="wifi_save_nodelet"
+        args="load wifi_save/WifiSaveNodelet wifi_nodelet_manager">
+    <param name="outputDir" value="$(arg outputDir)" type="str"/>
+    <param name="maxSize" value="$(arg maxSize)"/>
+  </node>
+
+</launch>

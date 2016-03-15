@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>gps</name>
+  <version>1.0.0</version>
+  <description>The gps package</description>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>gps_driver</run_depend>
+  <run_depend>gps_save</run_depend>
+  <run_depend>gps_fix</run_depend>
+  <run_depend>gps_parser</run_depend>
+  <run_depend>gps_msgs</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

@@ -1,0 +1,21 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <!-- start nodelet manager and load driver nodelet -->
+  <node pkg="nodelet" type="nodelet" name="imu_nodelet_manager"
+        args="manager" />
+  <!-- Serial speed -->
+  <arg name="baud" default="1000000" />
+  <!-- Serial port -->
+  <arg name="port" default="/dev/ttyACM0" />
+  <!-- TF id -->
+  <arg name="frame_id" default="imu" />
+  <!-- Start the IMU driver nodelet -->
+  <node pkg="nodelet" type="nodelet" name="imu_driver_nodelet"
+        args="load imu_driver/ImuDriverNodelet imu_nodelet_manager" >
+    <param name="baud" value="$(arg baud)"/>
+    <param name="port" value="$(arg port)"/>
+    <param name="frame_id" value="$(arg frame_id)"/>
+  </node>    
+
+</launch>

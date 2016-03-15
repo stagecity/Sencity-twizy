@@ -1,0 +1,23 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+
+  <!-- declare arguments with default values -->
+  <arg name="pcap" default="" />
+
+  <!-- start nodelet manager and driver nodelets and pointcloud  nodelet-->
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+  
+  
+  <!-- Directory where data will be store -->
+  <arg name="outputDir" default="~/catkin_ws/capture/"/>
+  <!-- Maximum file size of stored data -->
+  <arg name="maxSize" default="102400" />
+  <!-- start velodyne savedata nodelet -->
+  <node pkg="nodelet" type="nodelet" name="velodyne_savedata_nodelet"
+        args="load velodyne_savedata/SavedataNodelet velodyne_nodelet_manager">
+    <param name="outputDir" value="$(arg outputDir)" type="str"/>
+    <param name="maxSize" value="$(arg maxSize)"/>
+  </node>
+   
+</launch>

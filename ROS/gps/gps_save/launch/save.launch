@@ -1,0 +1,28 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Directory where to save data in -->
+  <arg name="outputDir" default="~/capture/"/>
+  <!-- Maximum size of binary file saved -->
+  <arg name="maxSize" default="102400" />
+  <!-- Serial speed -->
+  <arg name="baud" default="38400" />
+  <!-- Serial port -->
+  <arg name="port" default="/dev/ttyUSB0" />
+  <!-- TF id -->
+  <arg name="frame_id" default="gps" />
+  <!-- Start the GPS parser nodelet and his dependancies -->
+  <include file="$(find gps_parser)/launch/gps_parser.launch">
+    <arg name="baud" value="$(arg baud)"/>
+    <arg name="port" value="$(arg port)"/>
+    <arg name="frame_id" value="$(arg frame_id)"/>
+  </include>
+  
+  <!-- Start the GPS save nodelet -->
+  <node pkg="nodelet" type="nodelet" name="gps_save_nodelet"
+        args="load gps_save/GpsSaveNodelet gps_nodelet_manager">
+    <param name="outputDir" value="$(arg outputDir)" type="str"/>
+    <param name="maxSize" value="$(arg maxSize)"/>
+  </node>
+
+</launch>

@@ -1,0 +1,12 @@
+<package>
+
+  <name>twizy</name>
+  <version>1.0.0</version>
+  <description>
+    Twizy package.
+  </description>
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

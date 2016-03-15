@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <name>imu</name>
+  <version>1.0.0</version>
+  <description>The imu package</description>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>imu_driver</run_depend>
+  <run_depend>imu_save</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

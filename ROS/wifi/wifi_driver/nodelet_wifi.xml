@@ -1,0 +1,9 @@
+<library path="lib/libwifi_driver_nodelet">
+  <class name="wifi_driver/WifiDriverNodelet"
+         type="wifi_driver::WifiDriverNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description> 
+      Publish Wifi messages.
+    </description>
+  </class>
+</library>

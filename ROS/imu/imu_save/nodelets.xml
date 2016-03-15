@@ -1,0 +1,9 @@
+<library path="lib/libimu_save_nodelet">
+  <class name="imu_save/ImuSaveNodelet"
+         type="imu_save::ImuSaveNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Save data from imu in binary file.
+    </description>
+  </class>
+</library>

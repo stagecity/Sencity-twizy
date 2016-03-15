@@ -1,0 +1,24 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Serial speed -->
+  <arg name="baud" default="38400" />
+  <!-- Serial port -->
+  <arg name="port" default="/dev/ttyUSB0" />
+  <!-- Frame name for tf -->
+  <arg name="frame_id" default="gps" />
+  
+  <!-- Start the GPS parser and his dependancies -->
+  <include file="$(find gps_parser)/launch/gps_parser.launch">
+    <arg name="baud" value="$(arg baud)"/>
+    <arg name="port" value="$(arg port)"/>
+    <arg name="frame_id" value="$(arg frame_id)"/>
+  </include>
+  
+  <!-- Start fix nodelet -->
+  <node pkg="nodelet" type="nodelet" name="gps_fix_nodelet"
+        args="load gps_fix/GpsFixNodelet gps_nodelet_manager">
+        <param name="frame_id" value="$(arg frame_id)"/>
+  </node>
+  
+</launch>

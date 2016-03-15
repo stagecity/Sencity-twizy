@@ -1,0 +1,9 @@
+<library path="lib/libgps_fix_nodelet">
+  <class name="gps_fix/GpsFixNodelet"
+         type="gps_fix::GpsFixNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Generate Fix from GPS data.
+    </description>
+  </class>
+</library>

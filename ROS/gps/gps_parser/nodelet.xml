@@ -1,0 +1,9 @@
+<library path="lib/libgps_parser_nodelet">
+  <class name="gps_parser/GpsParserNodelet"
+         type="gps_parser::GpsParserNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description> 
+      Publish GPS sentences.
+    </description>
+  </class>
+</library>

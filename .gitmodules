@@ -1,0 +1,15 @@
+[submodule "ROS/velodyne"]
+	path = ROS/velodyne
+	url = https://github.com/stagecity/velodyne.git
+[submodule "ROS/serial"]
+	path = ROS/serial
+	url = https://github.com/wjwwood/serial.git
+[submodule "Arduino/libraries/MPU9250"]
+	path = Arduino/libraries/MPU9250
+	url = https://github.com/stagecity/MPU9250-SPI.git
+[submodule "Docs/RosCheatSheet"]
+	path = Docs/RosCheatSheet
+	url = https://github.com/ros/cheatsheet.git
+[submodule "ROS/rviz_satellite"]
+	path = ROS/rviz_satellite
+	url = https://github.com/gareth-cross/rviz_satellite.git

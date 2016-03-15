@@ -1,0 +1,15 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Rosbag file -->
+  <arg name="file" default=""/>
+  
+  <!-- Launch multiple rviz view with configuration -->
+  <node name="ImuVisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find twizy)/config/imu.rviz" />
+  <node name="LidarVisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find twizy)/config/velodyne.rviz" />
+  <node name="gpsVisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find twizy)/config/gps.rviz" />
+  
+  <!-- Start rosbag in play mode -->
+  <node name="bag" pkg="rosbag" type="play" output="screen" args="$(arg file)" />
+  
+</launch>

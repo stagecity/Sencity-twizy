@@ -1,0 +1,9 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Launch multiple rviz view with configuration -->
+  <node name="ImuVisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find twizy)/config/imu.rviz" />
+  <node name="LidarVisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find twizy)/config/velodyne.rviz" />
+  <node name="gpsVisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find twizy)/config/gps.rviz" />
+  
+</launch>

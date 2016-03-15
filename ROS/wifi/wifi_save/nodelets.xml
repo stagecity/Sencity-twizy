@@ -1,0 +1,9 @@
+<library path="lib/libwifi_save_nodelet">
+  <class name="wifi_save/WifiSaveNodelet"
+         type="wifi_save::WifiSaveNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Save data from wifi in binary file.
+    </description>
+  </class>
+</library>

@@ -1,0 +1,28 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Directory where to save data in -->
+  <arg name="outputDir" default="~/capture/"/>
+  <!-- Maximum size of binary file saved -->
+  <arg name="maxSize" default="102400" />
+  <!-- Serial speed -->
+  <arg name="baud" default="1000000" />
+  <!-- Serial port -->
+  <arg name="port" default="/dev/ttyACM0" />
+  <!-- TF id -->
+  <arg name="frame_id" default="imu" />
+  <!-- Start the IMU driver nodelet and his dependancies -->
+  <include file="$(find imu_driver)/launch/nodelet_manager.launch">
+    <arg name="baud" value="$(arg baud)"/>
+    <arg name="port" value="$(arg port)"/>
+    <arg name="frame_id" value="$(arg frame_id)"/>
+  </include>
+  
+  <!-- Start the IMU save nodelet -->
+  <node pkg="nodelet" type="nodelet" name="imu_save_nodelet"
+        args="load imu_save/ImuSaveNodelet imu_nodelet_manager">
+    <param name="outputDir" value="$(arg outputDir)" type="str"/>
+    <param name="maxSize" value="$(arg maxSize)"/>
+  </node>
+
+</launch>

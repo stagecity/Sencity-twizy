@@ -1,0 +1,9 @@
+<library path="lib/libimu_driver_nodelet">
+  <class name="imu_driver/ImuDriverNodelet"
+         type="imu_driver::ImuDriverNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description> 
+      Publish Imu messages.
+    </description>
+  </class>
+</library>

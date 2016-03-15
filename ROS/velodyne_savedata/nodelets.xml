@@ -1,0 +1,9 @@
+<library path="lib/libvelodyne_savedata_nodelet">
+  <class name="velodyne_savedata/SavedataNodelet"
+         type="velodyne_savedata::SavedataNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      Save data from velodyne VLP16 driver in binary file.
+    </description>
+  </class>
+</library>

@@ -1,0 +1,38 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+  <!-- Directory where to save data in -->
+  <arg name="outputDir" default="~/catkin_ws/capture/"/>
+  <!-- Maximum size of binary file saved -->
+  <arg name="maxSize" default="102400" />
+  <!-- Gps serial port -->
+  <arg name="gpsPort" default="/dev/ttyUSB0" />
+  <!-- WiFi interface name -->
+  <arg name="wifiPort" default="wlan0" />
+
+  <!-- Start gps save nodelet -->
+  <include file="$(find gps_save)/launch/save.launch">
+    <arg name="outputDir" value="$(arg outputDir)"/>
+    <arg name="maxSize" value="$(arg maxSize)"/>
+     <arg name="port" value="$(arg gpsPort)"/>
+  </include>
+
+  <!-- start WiFi save nodelet -->
+  <include file="$(find wifi_save)/launch/save.launch">
+    <arg name="outputDir" value="$(arg outputDir)"/>
+    <arg name="maxSize" value="$(arg maxSize)"/>
+    <arg name="port" value="$(arg wifiPort)"/>
+  </include>
+
+
+  <!-- for debug purpose -->
+  <!-- start gps fix nodelet -->
+  <node pkg="nodelet" type="nodelet" name="gps_fix_nodelet"
+        args="load gps_fix/GpsFixNodelet gps_nodelet_manager">
+  </node>
+
+  <!-- Store all ROS messages with Rosbag -->
+  <node pkg="rosbag" type="record" name="record" output="screen" args="-o /$(arg outputDir)/Rosbag -a"/>
+
+
+</launch>
