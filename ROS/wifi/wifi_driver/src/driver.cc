@@ -21,6 +21,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
 #include <sys/wait.h>
 #include <boost/lexical_cast.hpp>
 #include <wifi_msgs/WifiScan.h>
@@ -42,9 +43,8 @@ namespace wifi_driver
 	
 	/** poll the device
 	 *
-	 *  @returns true unless end of file reached
 	 */
-	bool WifiDriver::poll(void)
+	void WifiDriver::poll(void)
 	{
         pid_t childProc;        // will contain PID of iwlist
         int fd[2];              // file descriptors for pipe with iwlist
@@ -53,7 +53,8 @@ namespace wifi_driver
         if(pipe(fd) == -1)
         {
           ROS_ERROR_STREAM("Pipe error");
-          return false;
+          ROS_ERROR_STREAM(strerror(errno));
+          return;
         }
          
         // Here we fork
@@ -65,12 +66,13 @@ namespace wifi_driver
             {
                 close(fd[0]);
                 ROS_ERROR_STREAM("Error when creating child");
-                return false;
+                ROS_ERROR_STREAM(strerror(errno));
+                return;
             }
             std::vector<std::string> list;
             // try to read iwlist output
             if(!readPipe(fd[0], list)) {
-                return false;
+                return;
             }   
             
             // Allocate a new shared pointer for zero-copy sharing with other nodelets.
@@ -155,7 +157,8 @@ namespace wifi_driver
             wifiMsg->data.push_back(wifiData);
             
             output_.publish(wifiMsg);
-        
+            // Close pipe
+            close(fd[0]);
         }
         else // Child
         {
@@ -166,6 +169,7 @@ namespace wifi_driver
             if(dup2(fd[1], 1) == -1)
             {
                  ROS_ERROR_STREAM("Child : redirection error");
+                 ROS_ERROR_STREAM(strerror(errno));
                  exit(1);
             }
 
@@ -173,11 +177,10 @@ namespace wifi_driver
             if(execl("/sbin/iwlist", "/sbin/iwlist", port.c_str(), "scan", (char*) NULL) == -1)
             {
                 ROS_ERROR_STREAM("Child : exec error");
+                ROS_ERROR_STREAM(strerror(errno));
                 exit(1);
             }
         }
-
-		return true;
 	}
 	
 	/** Read the output of a process
@@ -208,6 +211,7 @@ namespace wifi_driver
                     continue;
                 }
                 ROS_ERROR_STREAM("Read error");
+                ROS_ERROR_STREAM(strerror(errno));
                 return false;
             }
             else if(charRead == 0)

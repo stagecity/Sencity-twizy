@@ -35,7 +35,7 @@ namespace wifi_driver
 				ros::NodeHandle private_nh);
 		~WifiDriver() {}
 	
-		bool poll(void);
+		void poll(void);
 	
 	private:
 		

@@ -75,9 +75,7 @@ namespace wifi_driver
 		while(ros::ok())
 		{
 			// poll device until end of file
-			running_ = dvr_->poll();
-			if (!running_)
-				break;
+			dvr_->poll();
 		}
 		running_ = false;
 	}
