@@ -6,7 +6,7 @@
     Wifi save data.
   </description>
   <license>GPLv3</license>
-
+  <maintainer email="anon@an.on">Anon</maintainer>
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>nodelet</build_depend>

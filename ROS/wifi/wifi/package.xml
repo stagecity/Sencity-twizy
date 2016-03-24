@@ -3,7 +3,7 @@
   <name>wifi</name>
   <version>1.0.0</version>
   <description>The wifi package</description>
-
+  <maintainer email="anon@an.on">Anon</maintainer>
   <license>GPLv3</license>
 
   <buildtool_depend>catkin</buildtool_depend>

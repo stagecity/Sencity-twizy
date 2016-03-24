@@ -6,7 +6,7 @@
     Velodyne 3D LIDAR VLP16 data save.
   </description>
   <license>GPLv3</license>
-
+  <maintainer email="anon@an.on">Anon</maintainer>
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>nodelet</build_depend>

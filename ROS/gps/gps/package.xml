@@ -5,7 +5,7 @@
   <description>The gps package</description>
 
   <license>GPLv3</license>
-
+  <maintainer email="anon@an.on">Anon</maintainer>
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>gps_driver</run_depend>
   <run_depend>gps_save</run_depend>
